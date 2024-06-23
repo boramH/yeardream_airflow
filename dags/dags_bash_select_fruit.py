@@ -9,10 +9,11 @@ with DAG(
     catchup=False
 ) as dag:
     
-    t0_grant_permission = BashOperator
+    t0_grant_permission = BashOperator(
         task_id="t0_grant_permission",
         bash_command="chmod +x /opt/airflow/plugins/shell/select_fruit.sh ",
-    
+    )
+
     t1_orange = BashOperator(
         task_id="t1_orange",
         bash_command="sh /opt/airflow/plugins/shell/select_fruit.sh ORANGE",
